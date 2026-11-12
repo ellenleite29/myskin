@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pele em dia</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Pele em dia">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--tx:#14181f;--mut:#6b7380;--line:#e8ebf1;--pri:#2563eb;--pri2:#e8effe;--ok:#16a34a;--pink:#f43f5e;--sh:0 1px 3px rgba(20,30,60,.08);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141c;--card:#1a202b;--tx:#eef1f6;--mut:#98a2b3;--line:#2a3140;--pri:#5b8cff;--pri2:#223256;--sh:none}}
+:root[data-theme="dark"]{--bg:#10141c;--card:#1a202b;--tx:#eef1f6;--mut:#98a2b3;--line:#2a3140;--pri:#5b8cff;--pri2:#223256;--sh:none}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI",Inter,Roboto,sans-serif;color:var(--tx);background:linear-gradient(135deg,#2f5fe0,#1e3fae 55%,#5b3aa8);background-attachment:fixed;min-height:100vh;padding:20px}
+.win{max-width:1180px;margin:0 auto;background:var(--bg);border-radius:20px;display:grid;grid-template-columns:210px 1fr;gap:16px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.side{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--sh);align-self:start}
+.logo{display:flex;gap:10px;align-items:center;margin-bottom:18px}.logo i{font-style:normal;font-size:22px;background:var(--pri2);border-radius:50%;width:38px;height:38px;display:grid;place-items:center}
+.logo b{display:block;font-size:15px}.logo span{font-size:11px;color:var(--mut)}
+.side h6{margin:16px 0 6px;font-size:11px;color:var(--mut);font-weight:500}
+.side a{display:block;padding:8px 10px;border-radius:8px;color:var(--tx);text-decoration:none;font-size:13.5px}.side a:first-of-type{background:var(--bg);font-weight:600}
+.side label{font-size:12px;color:var(--mut);display:block}.side input{width:100%;margin-top:4px;padding:7px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit;font-size:13px}
+.main{display:grid;gap:16px;min-width:0}
+.card{background:var(--card);border-radius:16px;padding:18px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.head h1{margin:0;font-size:22px;font-weight:500;text-transform:capitalize}.head h1 span{color:var(--mut)}
+.btn{border:0;background:var(--pri);color:#fff;border-radius:9px;padding:9px 14px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.ghost{background:var(--bg);color:var(--tx);border:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}.cols>div{display:grid;gap:16px;align-content:start;min-width:0}
+.lab{font-size:13px;font-weight:600}.big{font-size:44px;font-weight:700;letter-spacing:-1px;line-height:1.1;margin:6px 0}.big small{font-size:20px;color:var(--mut)}
+.sub{font-size:12.5px;color:var(--mut)}.emo{position:absolute;right:18px;top:12px;font-size:34px;color:var(--pri);line-height:1}.stars{display:flex;flex-wrap:wrap;gap:2px;font-size:26px;color:var(--line);margin:6px 0 0;line-height:1.1}.stars .on{color:#f5b301}.sm{padding:5px 11px}#mname{text-transform:capitalize}
+.bar{display:flex;gap:3px;margin-top:12px}.bar div{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:var(--pri);transition:width .3s}.bar div+div i{background:var(--ok)}
+.pill{display:inline-block;font-size:11.5px;padding:3px 9px;border-radius:99px;background:var(--pri2);color:var(--pri);font-weight:600;margin-top:6px}
+ul{list-style:none;margin:10px 0 0;padding:0}
+li label{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line);cursor:pointer;align-items:flex-start}
+li:first-child label{border-top:0}
+li input{appearance:none;flex:none;width:22px;height:22px;border:2px solid var(--line);border-radius:50%;margin:1px 0 0;cursor:pointer;display:grid;place-items:center}
+li input:checked{background:var(--ok);border-color:var(--ok)}li input:checked::after{content:"✓";color:#fff;font-size:13px;font-weight:700}
+li b{font-size:14.5px;display:block}li em{font-style:normal;font-size:12.5px;color:var(--pri);font-weight:600}li p{margin:2px 0 0;font-size:12.5px;color:var(--mut);line-height:1.4}
+li input:checked~div b{text-decoration:line-through;color:var(--mut)}
+.dow,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.dow{font-size:11px;color:var(--mut);margin:10px 0 4px}
+.d{border:0;background:var(--bg);color:var(--tx);border-radius:10px;padding:7px 0 5px;font:inherit;font-size:13px;cursor:pointer;position:relative}
+.d.o{opacity:.35}.d.t{outline:2px solid var(--pri2)}.d.s{background:var(--pri);color:#fff}.d .dt{display:flex;justify-content:center;gap:1px;height:9px;margin-top:3px}
+.dt u{text-decoration:none;font-size:7px;line-height:1;color:var(--line)}.dt u.on{color:#f5b301}.d.s .dt u{color:rgba(255,255,255,.35)}.d.s .dt u.on{color:#ffd54a}
+.rules li{padding:9px 0;border-top:1px solid var(--line);font-size:13px;line-height:1.4;display:flex;gap:10px}.rules li:first-child{border-top:0}
+.faq b{font-size:13.5px}.faq p{font-size:13px;color:var(--mut);line-height:1.5;margin:6px 0 0}
+@media(max-width:900px){body{padding:0}.win{grid-template-columns:1fr;border-radius:0;padding:12px}.cols{grid-template-columns:1fr}.side{display:none}.big{font-size:38px}}
+</style>
+</head>
+<body>
+<div class="win">
+<aside class="side">
+<div class="logo"><i>★</i><div><b>Pele em dia</b><span>Rotina da Ellen</span></div></div>
+<h6>Menu</h6>
+<a href="#hoje">Visão geral</a><a href="#cal">Calendário</a><a href="#regras">Combinações</a>
+<h6>Ajustes</h6>
+<label>Início do plano<input type="date" id="start"></label>
+<h6>Fases</h6>
+<p class="sub">1 · base + peróxido (sem 1–4)<br>2 · adapaleno 2x (sem 5–6)<br>3 · adapaleno 3x (sem 7–8)<br>4 · adapaleno + azelaico (sem 9+)</p>
+</aside>
+<main class="main" id="hoje">
+<div class="card head"><h1 id="title"></h1><div><button class="btn ghost" id="prev">‹</button> <button class="btn ghost" id="next">›</button> <button class="btn" id="today">Hoje</button></div></div>
+<div class="cols">
+<div>
+<div class="card"><div class="lab" id="dlab"></div><div class="stars" id="stars"></div><div class="big" id="pct"></div><div class="sub" id="phase"></div><span class="pill" id="pill"></span><div class="bar"><div><i id="b1"></i></div><div><i id="b2"></i></div></div></div>
+<div class="card"><span class="emo">𖤓</span><div class="lab">Manhã</div><div class="sub">Toque para marcar cada passo</div><ul id="am"></ul></div>
+<div class="card"><span class="emo">☾</span><div class="lab">Noite</div><div class="sub" id="pmsub"></div><ul id="pm"></ul></div>
+</div>
+<div>
+<div class="card" id="cal"><div class="head"><div class="lab" id="mname"></div><div><button class="btn ghost sm" id="mprev">‹</button> <button class="btn ghost sm" id="mnext">›</button></div></div><div class="sub">Quanto mais ★, mais passos concluídos</div><div class="dow"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div><div class="grid" id="grid"></div></div>
+<div class="card faq"><div class="lab">Peróxido de benzoíla</div>
+<p><b>Mancha a pele?</b> Não. Ele descolore tecidos (toalha, fronha, cabelo), não a pele. Manchas vermelhas vêm de inflamação ou irritação.</p>
+<p><b>Lavar depois?</b> Não precisa. Passe fina nas áreas com acne, espere 1–2 min, e ponha hidratante e depois protetor por cima.</p>
+<p><b>Ardendo ou descamando?</b> Use em dias alternados e fale com a dermatologista se persistir.</p></div>
+<div class="card faq"><div class="lab">Adapaleno e azelaico</div>
+<p><b>Adapaleno 0,1%:</b> age nos cravos e na acne. Pode ressecar e descamar nas primeiras semanas, e isso é esperado. Sempre à noite e com protetor de dia.</p>
+<p><b>Ácido azelaico 10–15%:</b> acalma a vermelhidão, ajuda nas manchas e na acne. Entra na semana 9, em noites alternadas com o adapaleno.</p></div>
+<div class="card" id="regras"><div class="lab">Combinações</div>
+<ul class="rules"><li>Hidratante sempre antes do protetor.</li><li>Peróxido de manhã, adapaleno à noite. Nunca juntos no começo.</li><li>Argila e adapaleno em noites diferentes.</li><li>Adapaleno: pele bem seca, espere 10–15 min após lavar.</li><li>Azelaico e adapaleno em noites alternadas, nunca juntos.</li><li>Um ativo novo por vez, com 3–4 semanas entre eles.</li><li>Fronha e toalha brancas por causa do peróxido.</li></ul></div>
+</div>
+</div>
+<div class="card" id="bk"><div class="lab">Backup do progresso</div><div class="sub">Gere o texto e guarde no bloco de notas. Para restaurar, cole aqui e toque em Restaurar.</div><textarea id="bt" rows="3" style="width:100%;margin-top:8px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--tx);font:12px monospace"></textarea><div style="margin-top:8px;display:flex;gap:8px"><button class="btn ghost" id="bex">Gerar backup</button><button class="btn" id="bim">Restaurar</button></div></div>
+</main>
+</div>
+<script>
+var $=function(s){return document.querySelector(s)},mem={};
+function g(k){try{var v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return mem[k]||null}
+function s(k,v){mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}}
+function z(n){return String(n).padStart(2,"0")}
+function iso(d){return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate())}
+function ps(x){var a=x.split("-").map(Number);return new Date(a[0],a[1]-1,a[2])}
+var now=new Date(),todayS=iso(now),start=g("skin:start")||todayS,sel=todayS,vm=new Date(now.getFullYear(),now.getMonth(),1);
+var AM=[
+{id:"am1",t:"Lavar o rosto",p:"CeraVe",n:"Água morna, 30 segundos. Seque com batidinhas, sem esfregar."},
+{id:"am2",t:"Peróxido de benzoíla",p:"Só nas áreas com acne",n:"Camada fina na pele seca. Espere 1–2 min e lave as mãos."},
+{id:"am3",t:"Hidratante",p:"Hada Labo",n:"Vem antes do protetor. Pode ir por cima do peróxido."},
+{id:"am4",t:"Protetor solar FPS 50+",p:"Biore Aqua",n:"Último passo. 2 dedos no rosto e pescoço. Reaplique a cada 2–3 h no sol."}];
+function plan(d){var days=Math.round((ps(d)-ps(start))/864e5),wk=Math.max(0,Math.floor(days/7)),dow=ps(d).getDay(),ph=wk<4?1:wk<6?2:wk<8?3:4;
+var ada=ph==2?(dow==1||dow==4):ph>=3?(dow==1||dow==3||dow==5):false,az=ph==4&&(dow==2||dow==4||dow==6),clay=dow==0,pm=[{id:"pm1",t:"Lavar o rosto",p:"CeraVe",n:"Se usou protetor ou maquiagem, lave 2 vezes."}];
+if(clay)pm.push({id:"pm2",t:"Máscara de argila",p:"Só na zona T, 5–10 min",n:"Não deixe secar por completo. Enxágue e hidrate. Sem adapaleno hoje."});
+if(ada)pm.push({id:"pm3",t:"Adapaleno 0,1%",p:"Tamanho de ervilha, rosto todo",n:"Pele totalmente seca (10–15 min após lavar). Evite o contorno dos olhos e da boca."});
+if(az)pm.push({id:"pm5",t:"Ácido azelaico 10–15%",p:"Camada fina no rosto todo",n:"Pele seca. Pode arder um pouco no começo. Nunca na mesma noite do adapaleno."});
+pm.push({id:"pm4",t:"Hidratante",p:"Hada Labo",n:ada?"Depois do adapaleno, para evitar ressecamento.":"Camada generosa para repor a barreira."});
+return{wk:wk,ph:ph,ada:ada,az:az,clay:clay,pm:pm}}
+function done(d){try{return JSON.parse(g("skin:"+d)||"[]")}catch(e){return[]}}
+function items(arr,dn){return arr.map(function(x){return'<li><label><input type="checkbox" data-id="'+x.id+'"'+(dn.indexOf(x.id)>-1?" checked":"")+'><div><b>'+x.t+'</b><em>'+x.p+'</em><p>'+x.n+'</p></div></label></li>'}).join("")}
+function render(){
+var P=plan(sel),dn=done(sel),d=ps(sel);
+$("#title").innerHTML=d.toLocaleDateString("pt-BR",{weekday:"long"})+" <span>"+d.toLocaleDateString("pt-BR",{day:"numeric",month:"long"})+"</span>";
+$("#dlab").textContent=sel==todayS?"Progresso de hoje":"Progresso do dia";
+$("#am").innerHTML=items(AM,dn);$("#pm").innerHTML=items(P.pm,dn);
+var a=AM.filter(function(x){return dn.indexOf(x.id)>-1}).length,p=P.pm.filter(function(x){return dn.indexOf(x.id)>-1}).length,tot=AM.length+P.pm.length;
+$("#pct").innerHTML=Math.round((a+p)/tot*100)+"<small>%</small>";var nst=a+p;$("#stars").innerHTML=Array.apply(null,Array(tot)).map(function(_,i){return'<span class="'+(i<nst?"on":"")+'">★</span>'}).join("");
+$("#b1").style.width=a/AM.length*100+"%";$("#b2").style.width=p/P.pm.length*100+"%";
+$("#phase").textContent="Fase "+P.ph+" · semana "+(P.wk+1)+(P.ph==1?" · base + peróxido":P.ph==2?" · adapaleno 2x por semana":P.ph==3?" · adapaleno 3x por semana":" · adapaleno + azelaico");
+$("#pill").textContent=P.ada?"Hoje à noite: adapaleno":P.az?"Hoje à noite: ácido azelaico":P.clay?"Hoje à noite: argila":"Noite sem ativo";
+$("#pmsub").textContent=P.ada||P.clay||P.az?"Dia de tratamento":"Só limpeza e hidratante: a pele descansa";
+$("#mname").textContent=vm.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+var f=new Date(vm.getFullYear(),vm.getMonth(),1),st=new Date(f);st.setDate(1-f.getDay());var h="";
+for(var i=0;i<42;i++){var c=new Date(st);c.setDate(st.getDate()+i);var k=iso(c),D=done(k),pl=plan(k),nn=AM.concat(pl.pm).filter(function(x){return D.indexOf(x.id)>-1}).length,sc=Math.round(nn/(AM.length+pl.pm.length)*5);
+if(i>=35&&c.getMonth()!=vm.getMonth())break;
+h+='<button class="d'+(c.getMonth()!=vm.getMonth()?" o":"")+(k==todayS?" t":"")+(k==sel?" s":"")+'" data-d="'+k+'">'+c.getDate()+'<span class="dt">'+[0,1,2,3,4].map(function(j){return'<u class="'+(j<sc?"on":"")+'">★</u>'}).join("")+'</span></button>'}
+$("#grid").innerHTML=h;$("#start").value=start}
+document.addEventListener("change",function(e){var id=e.target.getAttribute&&e.target.getAttribute("data-id");if(!id)return;var dn=done(sel),i=dn.indexOf(id);if(e.target.checked&&i<0)dn.push(id);if(!e.target.checked&&i>-1)dn.splice(i,1);s("skin:"+sel,JSON.stringify(dn));render()});
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-d]");if(b){sel=b.getAttribute("data-d");vm=new Date(ps(sel).getFullYear(),ps(sel).getMonth(),1);render()}});
+function mv(n){var d=ps(sel);d.setDate(d.getDate()+n);sel=iso(d);vm=new Date(d.getFullYear(),d.getMonth(),1);render()}
+$("#prev").onclick=function(){mv(-1)};
+$("#mprev").onclick=function(){vm.setMonth(vm.getMonth()-1);render()};
+$("#next").onclick=function(){mv(1)};
+$("#mnext").onclick=function(){vm.setMonth(vm.getMonth()+1);render()};
+$("#today").onclick=function(){sel=todayS;vm=new Date(now.getFullYear(),now.getMonth(),1);render()};
+$("#bex").onclick=function(){var o={},k,i;try{for(i=0;i<localStorage.length;i++){k=localStorage.key(i);if(k.indexOf("skin:")==0)o[k]=localStorage.getItem(k)}}catch(e){}for(k in mem)if(k.indexOf("skin:")==0)o[k]=mem[k];var t=JSON.stringify(o),b=$("#bt");b.value=t;b.select();try{navigator.clipboard.writeText(t)}catch(e){}};
+$("#bim").onclick=function(){var b=$("#bt");try{var o=JSON.parse(b.value);for(var k in o)if(k.indexOf("skin:")==0)s(k,o[k]);start=g("skin:start")||start;render();b.value="Restaurado com sucesso."}catch(e){b.value="Texto inválido. Cole o backup completo."}};
+$("#start").onchange=function(){if(this.value){start=this.value;s("skin:start",start);render()}};
+render();
+</script>
+</body>
+</html>
